@@ -28,6 +28,14 @@
 		setProperty("heatprot", 5)
 		setProperty("meleeprot_head", 2)
 
+	AttackSelf(mob/user)
+		/obj/item/clothing/mask/W = user.equipped()
+		if (!wear_mask)
+			user.drop_item(W)
+			wear_mask = W
+			wear_mask.set_loc(src)
+			update_head_image()
+
 /obj/item/clothing/mask/attackby(obj/item/W, mob/user)
 	if (istype(W, /obj/item/voice_changer))
 		if (src.see_face)
